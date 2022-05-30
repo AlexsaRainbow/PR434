@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "e6cc6e01-fb8f-42b4-b3e2-7d4fadd2dd22": {
+      "ProjectGuid": "e6cc6e01-fb8f-42b4-b3e2-7d4fadd2dd22",
+      "DisplayName": "WSUniversalLib",
+      "ColorIndex": 0
+    },
+    "547b8359-1cc2-4000-841b-1e6f4fac552c": {
+      "ProjectGuid": "547b8359-1cc2-4000-841b-1e6f4fac552c",
+      "DisplayName": "CalculationTest",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}

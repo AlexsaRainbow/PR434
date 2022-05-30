@@ -1,0 +1,6 @@
+D:\экзамен\WSUniversalLib\WSUniversalLib\bin\Debug\WSUniversalLib.dll
+D:\экзамен\WSUniversalLib\WSUniversalLib\bin\Debug\WSUniversalLib.pdb
+D:\экзамен\WSUniversalLib\WSUniversalLib\obj\Debug\WSUniversalLib.csproj.AssemblyReference.cache
+D:\экзамен\WSUniversalLib\WSUniversalLib\obj\Debug\WSUniversalLib.csproj.CoreCompileInputs.cache
+D:\экзамен\WSUniversalLib\WSUniversalLib\obj\Debug\WSUniversalLib.dll
+D:\экзамен\WSUniversalLib\WSUniversalLib\obj\Debug\WSUniversalLib.pdb
