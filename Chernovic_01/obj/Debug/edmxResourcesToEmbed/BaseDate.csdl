@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ChernovicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="MaretialPostvshik">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idMaterial" Type="Int32" Nullable="false" />
+    <Property Name="idPostvshik" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Materials" Relationship="Self.FK_MaretialPostvshik_Materials" FromRole="MaretialPostvshik" ToRole="Materials" />
+    <NavigationProperty Name="Postavshiki" Relationship="Self.FK_MaretialPostvshik_Postavshiki" FromRole="MaretialPostvshik" ToRole="Postavshiki" />
+  </EntityType>
+  <EntityType Name="Materials">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameMaterial" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IdType" Type="Int32" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Cena" Type="Double" Nullable="false" />
+    <Property Name="KolNaSklade" Type="Int32" Nullable="false" />
+    <Property Name="MinKol" Type="Int32" Nullable="false" />
+    <Property Name="KolVYpakovke" Type="Int32" Nullable="false" />
+    <Property Name="EdinizeIzmerenia" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="MaretialPostvshik" Relationship="Self.FK_MaretialPostvshik_Materials" FromRole="Materials" ToRole="MaretialPostvshik" />
+    <NavigationProperty Name="TypeMaterial" Relationship="Self.FK_Materials_TypeMaterial" FromRole="Materials" ToRole="TypeMaterial" />
+  </EntityType>
+  <EntityType Name="Postavshiki">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NamePostavshik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IdType" Type="Int32" Nullable="false" />
+    <Property Name="INN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Kachestva" Type="Int32" Nullable="false" />
+    <Property Name="DateNachalaRabotu" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="MaretialPostvshik" Relationship="Self.FK_MaretialPostvshik_Postavshiki" FromRole="Postavshiki" ToRole="MaretialPostvshik" />
+    <NavigationProperty Name="TypePostovshic" Relationship="Self.FK_Postavshiki_TypePostovshic" FromRole="Postavshiki" ToRole="TypePostovshic" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TypeMaterial">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameType" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Materials" Relationship="Self.FK_Materials_TypeMaterial" FromRole="TypeMaterial" ToRole="Materials" />
+  </EntityType>
+  <EntityType Name="TypePostovshic">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameType" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Postavshiki" Relationship="Self.FK_Postavshiki_TypePostovshic" FromRole="TypePostovshic" ToRole="Postavshiki" />
+  </EntityType>
+  <Association Name="FK_MaretialPostvshik_Materials">
+    <End Role="Materials" Type="Self.Materials" Multiplicity="1" />
+    <End Role="MaretialPostvshik" Type="Self.MaretialPostvshik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Materials">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MaretialPostvshik">
+        <PropertyRef Name="idMaterial" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MaretialPostvshik_Postavshiki">
+    <End Role="Postavshiki" Type="Self.Postavshiki" Multiplicity="1" />
+    <End Role="MaretialPostvshik" Type="Self.MaretialPostvshik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Postavshiki">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MaretialPostvshik">
+        <PropertyRef Name="idPostvshik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Materials_TypeMaterial">
+    <End Role="TypeMaterial" Type="Self.TypeMaterial" Multiplicity="1" />
+    <End Role="Materials" Type="Self.Materials" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeMaterial">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Materials">
+        <PropertyRef Name="IdType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Postavshiki_TypePostovshic">
+    <End Role="TypePostovshic" Type="Self.TypePostovshic" Multiplicity="1" />
+    <End Role="Postavshiki" Type="Self.Postavshiki" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypePostovshic">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Postavshiki">
+        <PropertyRef Name="IdType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ChernovicEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="MaretialPostvshik" EntityType="Self.MaretialPostvshik" />
+    <EntitySet Name="Materials" EntityType="Self.Materials" />
+    <EntitySet Name="Postavshiki" EntityType="Self.Postavshiki" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TypeMaterial" EntityType="Self.TypeMaterial" />
+    <EntitySet Name="TypePostovshic" EntityType="Self.TypePostovshic" />
+    <AssociationSet Name="FK_MaretialPostvshik_Materials" Association="Self.FK_MaretialPostvshik_Materials">
+      <End Role="Materials" EntitySet="Materials" />
+      <End Role="MaretialPostvshik" EntitySet="MaretialPostvshik" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MaretialPostvshik_Postavshiki" Association="Self.FK_MaretialPostvshik_Postavshiki">
+      <End Role="Postavshiki" EntitySet="Postavshiki" />
+      <End Role="MaretialPostvshik" EntitySet="MaretialPostvshik" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Materials_TypeMaterial" Association="Self.FK_Materials_TypeMaterial">
+      <End Role="TypeMaterial" EntitySet="TypeMaterial" />
+      <End Role="Materials" EntitySet="Materials" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Postavshiki_TypePostovshic" Association="Self.FK_Postavshiki_TypePostovshic">
+      <End Role="TypePostovshic" EntitySet="TypePostovshic" />
+      <End Role="Postavshiki" EntitySet="Postavshiki" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
