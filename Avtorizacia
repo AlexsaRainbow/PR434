@@ -1,0 +1,48 @@
+  try
+            {
+                if (TbLogin.Text.Length > 0)
+                {
+                    if (PbParol.Password.Length > 0)
+                    {
+                        Zhurnal1Entities2 context = new Zhurnal1Entities2();
+                        int idUser = context.Avtorizacia.Where(p => p.Login == TbLogin.Text && p.Password == PbParol.Password).Select(p => p.Id_User).FirstOrDefault();
+                        int idRol = context.Avtorizacia.Where(p => p.Login == TbLogin.Text && p.Password == PbParol.Password).Select(p => p.Id_Rol).FirstOrDefault();
+                        TbCodeUser.Text = idUser.ToString();
+                        TbCodeRole.Text = idRol.ToString();
+                        switch (idRol)
+                        {
+                            case 1:
+                                {
+                                    MainAdmin mainAdmin = new MainAdmin();
+                                    mainAdmin.Show();
+                                    this.Hide();
+                                }
+                                break;
+                            case 2:
+                                {
+                                    WinViborGroup winViborGroup = new WinViborGroup(idUser, 2);
+                                    winViborGroup.Show();
+                                    this.Hide();
+                                }
+                                break;
+                            case 3:
+                                {
+                                    WinViborGroup winViborGroup = new WinViborGroup(0, 3);
+                                    winViborGroup.Show();
+                                    this.Hide();
+                                }
+                                break;
+                        }
+                        if (idUser == 0)
+                        {
+                            MessageBox.Show("Пользователя не существует. Проверьте правильность логина/пароля", "Внимание");
+                        }
+                    }
+                    else MessageBox.Show("Введите пароль");
+                }
+                else MessageBox.Show("Введите логин");
+            }
+           catch(Exception ex)
+            {
+                MessageBox.Show("Проверьте соеденение с базой", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
