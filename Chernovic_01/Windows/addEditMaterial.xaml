@@ -1,0 +1,72 @@
+﻿<Window x:Class="Chernovic_01.Windows.addEditMaterial"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Chernovic_01.Windows"
+        mc:Ignorable="d"
+        Title="Добавление/редактирование материала" Height="600" Width="700"  MinHeight="600" MinWidth="700" MaxHeight="600" MaxWidth="700" FontFamily="Segoe Print" FontSize="12">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="52*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#FEA9AB">
+            <Image Source="/Images/Черновик.png" Margin="5" />
+            <TextBlock Text="Черновик" VerticalAlignment="Center" FontSize="25"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <StackPanel Orientation="Vertical">
+                <Label Content="Наименование"/>
+                <Label Content="Тип материала"/>
+                <Label Content="Количество на складе"/>
+                <Label Content="Единица измерения"/>
+                <Label Content="Количество в упаковке"/>
+                <Label Content="Минимальное количество"/>
+                <Label Content="Стоимость за единицу"/>
+                <Label Content="Изображение"/>
+                <Label Content="Подробное описание"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Width="200">
+                <TextBox Text="{Binding NameMaterial}" Margin="0,5,0,0"/>
+                <ComboBox DisplayMemberPath="NameType" Margin="0,5,0,0" SelectedValuePath="Id" x:Name="cbType" />
+                <TextBox  Text="{Binding KolNaSklade}" Margin="0,5,0,0" />
+                <TextBox Text="{Binding EdinizeIzmerenia}" Margin="0,10,0,0" MaxLength="2"/>
+                <TextBox Text="{Binding KolVYpakovke}" Margin="0,5,0,0"/>
+                <TextBox x:Name="tbMin" Text="{Binding MinKol}" Margin="0,10,0,0"/>
+                <TextBox Text="{Binding Cena}" Margin="0,10,0,0"/>
+                <TextBox Text="{Binding Image}" Margin="0,5,0,0"/>
+                <TextBox Height="100" Margin="0,5,0,0" Text="Подробное описание"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="5,0,0,0" Width="250">
+                <Label Content="Поставщики"/>
+                <ListView x:Name="listPostavok" Height="200" FontSize="10" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel HorizontalAlignment="Center"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Black" BorderThickness="1">
+                                <StackPanel Orientation="Horizontal" Width="250">
+                                    <TextBlock Text="{Binding Postavshiki.NamePostavshik}" TextWrapping="Wrap" Width="150"/>
+                                    <Button x:Name="btnDeletePos" Content="Удалить" Margin="5,5,5,5" Click="btnDeletePos_Click"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <TextBox x:Name="tbPoisk" Margin="5" TextChanged="tbPoisk_TextChanged"/>
+                <ComboBox x:Name="cbPost" Margin="5" DisplayMemberPath="NamePostavshik" SelectedValuePath="Id"/>
+                <Button x:Name="btnAddP" Content="Добавить" Click="btnAddP_Click"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
+            <Button x:Name="btnDelete" Content="Удалить" Margin="5" Click="btnDelete_Click"/>
+            <Button x:Name="btnSave" Click="btnSave_Click" Content="Сохранить" Margin="5"/>
+            <Button x:Name="btnOtmena" Content="Отмена" Margin="5" Click="btnOtmena_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

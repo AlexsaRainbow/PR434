@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9692971026a84116959995a844b99e30" Name="Diagram1">
+        <EntityTypeShape EntityType="ChernovicModel.MaretialPostvshik" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChernovicModel.Materials" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChernovicModel.Postavshiki" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChernovicModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChernovicModel.TypeMaterial" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChernovicModel.TypePostovshic" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="ChernovicModel.FK_MaretialPostvshik_Materials" ManuallyRouted="false" />
+        <AssociationConnector Association="ChernovicModel.FK_MaretialPostvshik_Postavshiki" ManuallyRouted="false" />
+        <AssociationConnector Association="ChernovicModel.FK_Materials_TypeMaterial" ManuallyRouted="false" />
+        <AssociationConnector Association="ChernovicModel.FK_Postavshiki_TypePostovshic" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

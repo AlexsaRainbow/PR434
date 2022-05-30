@@ -1,0 +1,71 @@
+﻿<Page x:Class="Chernovic_01.Pages.materialPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Chernovic_01.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="materialPage"  Loaded="Page_Loaded" FontFamily="Segoe Print" >
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="289*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="btnNazad" Content="Назад" Grid.Row="0" HorizontalAlignment="Left" Width="100" Margin="5" Click="btnNazad_Click"/>
+        <StackPanel Orientation="Vertical" Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="tbPoisk" Width="200" Margin="5" TextChanged="tbPoisk_TextChanged" />
+                <ComboBox x:Name="cbSort" Width="270" Margin="5" SelectionChanged="cbSort_SelectionChanged"/>
+                <ComboBox x:Name="cbFilter" Width="200" Margin="5" DisplayMemberPath="NameType" SelectedValuePath="Id" SelectionChanged="cbFilter_SelectionChanged"/>
+            </StackPanel>
+            <TextBlock x:Name="tbSkolcoDanih" Background="#FFFFAFB1" Margin="5,0,0,0"/>
+        </StackPanel>
+        <ListView x:Name="listMaterial" Grid.Row="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" BorderThickness="1" Background="{Binding Style}">
+                        <StackPanel Orientation="Horizontal" Width="900" Height="120">
+                            <Image Source="{Binding Image}" Margin="10" Width="100" Height="50"/>
+                            <StackPanel Orientation="Vertical" Width="450">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding TypeMaterial.NameType, StringFormat={}{0}|}"/>
+                                    <TextBlock Text="{Binding NameMaterial}"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding MinKol, StringFormat={}Минимальное количество {0} шт}"/>
+                                <TextBlock Text="{Binding SpisokPostavshic}" TextWrapping="Wrap" Width="400" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding KolNaSklade, StringFormat={} Остаток: {0} шт }"/>
+                                <Button x:Name="btnEdit" Content="Редактировать" Margin="0,20,0,0" Click="btnEdit_Click"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid Grid.Row="3" Background="#FEA9AB">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnAdd" Grid.Column="0" HorizontalAlignment="Left" Content="Добавить материал" Margin="5" Click="btnAdd_Click" Width="200"/>
+            <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
+                <Button x:Name="btnVNachalo" Content="&lt;&lt;" Margin="5" Click="btnVNachalo_Click" Width="30" Height="30"/>
+                <Button x:Name="btnNazadS" Content="&lt;" Margin="5" Click="btnNazadS_Click"  Width="30" Height="30"/>
+                <TextBox x:Name="tbTekPage" Width="30" Height="30"/>
+                <Label x:Name="lbVsegoPage" Width="60" Height="30"/>
+                <Button x:Name="btnVpered" Content=">" Margin="5" Click="btnVpered_Click"  Width="30" Height="30"/>
+                <Button x:Name="btnVKonez" Content=">>" Margin="5" Click="btnVKonez_Click"  Width="30" Height="30"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
